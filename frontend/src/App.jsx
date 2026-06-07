@@ -673,6 +673,8 @@ function App() {
                 required
                 value={newSessionDate}
                 onChange={(e) => setNewSessionDate(e.target.value)}
+                onClick={(e) => e.target.showPicker && e.target.showPicker()}
+                onFocus={(e) => e.target.showPicker && e.target.showPicker()}
                 className="bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-slate-100 focus:outline-none focus:border-indigo-500"
               />
             </div>
@@ -685,6 +687,8 @@ function App() {
                   required
                   value={newSessionStartHour}
                   onChange={(e) => setNewSessionStartHour(e.target.value)}
+                  onClick={(e) => e.target.showPicker && e.target.showPicker()}
+                  onFocus={(e) => e.target.showPicker && e.target.showPicker()}
                   className="bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-slate-100 focus:outline-none focus:border-indigo-500"
                 />
               </div>
@@ -724,6 +728,8 @@ function App() {
                     required={newSessionRepeatWeekly}
                     value={newSessionRepeatUntil}
                     onChange={(e) => setNewSessionRepeatUntil(e.target.value)}
+                    onClick={(e) => e.target.showPicker && e.target.showPicker()}
+                    onFocus={(e) => e.target.showPicker && e.target.showPicker()}
                     className="bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs text-slate-100 focus:outline-none focus:border-indigo-500"
                   />
                 </div>
@@ -843,6 +849,8 @@ function App() {
                   required
                   value={editSessionDate}
                   onChange={(e) => setEditSessionDate(e.target.value)}
+                  onClick={(e) => e.target.showPicker && e.target.showPicker()}
+                  onFocus={(e) => e.target.showPicker && e.target.showPicker()}
                   className="bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-slate-100 focus:outline-none focus:border-indigo-500 disabled:opacity-50"
                 />
               </div>
@@ -855,6 +863,8 @@ function App() {
                     required
                     value={editSessionStartHour}
                     onChange={(e) => setEditSessionStartHour(e.target.value)}
+                    onClick={(e) => e.target.showPicker && e.target.showPicker()}
+                    onFocus={(e) => e.target.showPicker && e.target.showPicker()}
                     className="bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-slate-100 focus:outline-none focus:border-indigo-500 disabled:opacity-50"
                   />
                 </div>
