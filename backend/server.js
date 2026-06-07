@@ -282,6 +282,9 @@ app.post('/api/admin/reseed', async (req, res) => {
 });
 // ────────────────────────────────────────────────────────────────────────────
 
+// In-memory set to prevent double-click save operations (Idempotency check)
+const processedRequests = new Set();
+
 app.get('/api/sessions', async (req, res) => {
   try {
     const sessions = await Session.find();
@@ -293,6 +296,18 @@ app.get('/api/sessions', async (req, res) => {
 
 app.post('/api/sessions', async (req, res) => {
   try {
+    // Backend Idempotency Check against button double-clicks
+    const idempotencyKey = req.headers['x-idempotency-key'] || req.body.idempotencyKey;
+    if (idempotencyKey) {
+      if (processedRequests.has(idempotencyKey)) {
+        return res.status(409).json({ message: 'Duplicate request detected. Action already processed.' });
+      }
+      processedRequests.add(idempotencyKey);
+      
+      // Clear key after some time to prevent memory leak
+      setTimeout(() => processedRequests.delete(idempotencyKey), 60000);
+    }
+
     const { title, tutorId, startTime, endTime, timezone, billingStatus, organizationId, repeatWeekly, repeatUntil } = req.body;
     let orgId = organizationId;
     if (!orgId) {
@@ -364,9 +379,6 @@ app.post('/api/sessions', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-
-// In-memory set to prevent double-click save operations (Idempotency check)
-const processedRequests = new Set();
 
 // GET /api/invoices — return all invoices with line items (for billing ledger display)
 app.get('/api/invoices', async (req, res) => {
