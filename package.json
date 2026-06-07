@@ -1,0 +1,15 @@
+{
+  "name": "evallobillcal-root",
+  "version": "1.0.0",
+  "description": "Monorepo for evalloBillCal",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
