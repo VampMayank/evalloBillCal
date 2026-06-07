@@ -9,7 +9,7 @@ export const useBillingActions = () => {
 
   const fetchSessions = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/sessions');
+      const response = await axios.get('/api/sessions');
       setSessions(response.data);
     } catch (err) {
       setError(err.message);
@@ -23,7 +23,7 @@ export const useBillingActions = () => {
     setIsSaving(true);
     setError(null);
     try {
-      const response = await axios.put(`http://localhost:5000/api/sessions/${sessionId}`, {
+      const response = await axios.put(`/api/sessions/${sessionId}`, {
         newAmount,
         reason
       });

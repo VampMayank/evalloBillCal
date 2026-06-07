@@ -25,7 +25,7 @@ export const useSchedulingStore = create((set, get) => ({
   fetchSessions: async () => {
     set({ isFetching: true, error: null });
     try {
-      const response = await axios.get('http://localhost:5000/api/sessions');
+      const response = await axios.get('/api/sessions');
       set({ sessions: response.data, isFetching: false });
     } catch (error) {
       set({ error: error.message, isFetching: false });
@@ -83,7 +83,7 @@ export const useSchedulingStore = create((set, get) => ({
       // Generate a unique idempotency key for the backend to prevent network-level duplicates
       const idempotencyKey = `req-${sessionId}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
-      const response = await axios.put(`http://localhost:5000/api/sessions/${sessionId}`, updateData, {
+      const response = await axios.put(`/api/sessions/${sessionId}`, updateData, {
         headers: {
           'x-idempotency-key': idempotencyKey
         }
@@ -126,7 +126,7 @@ export const useSchedulingStore = create((set, get) => ({
     set({ isSaving: true, error: null });
     try {
       const idempotencyKey = `new-${tutorId}-${new Date(startTime).getTime()}-${Math.random().toString(36).substr(2, 9)}`;
-      const response = await fetch('http://localhost:5000/api/sessions', {
+      const response = await fetch('/api/sessions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
