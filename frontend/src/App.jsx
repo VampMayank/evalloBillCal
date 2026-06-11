@@ -494,7 +494,7 @@ function App() {
 
                     let colorClasses = 'bg-indigo-500/10 border-indigo-500/60 text-indigo-200';
                     if (isBilled) {
-                      colorClasses = 'bg-amber-500/10 border-amber-500/60 text-amber-200';
+                      colorClasses = 'bg-green/10 border-amber-500/60 text-amber-200';
                     } else if (isCompleted) {
                       colorClasses = 'bg-slate-700/20 border-slate-600/40 text-slate-400 opacity-60';
                     }
